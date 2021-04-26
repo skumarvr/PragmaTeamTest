@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {tap} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -55,24 +56,33 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const loadData = () => {
-      this.products.forEach((product) => {
-        this.httpClient.get(`http://localhost:8081/temperature/${product.id}`)
-          .pipe(
-            tap(response => {
-              this.data[product.id] = {
-                ...product,
-                ...response
-              };
-            })
-          ).subscribe();
-      });
-    };
-
-    loadData();
+    this.loadData(this.products);
 
     setInterval(() => {
-      loadData();
+      console.log(this.data);
+      this.loadData(this.products);
     }, 5000);
+  }
+
+  loadData(products: any) {
+    products.forEach((product) => {
+      this.getTemperatureOfProduct(product)
+          .subscribe(data => {
+            this.data[product.id] = data;
+          })
+    });
+  };
+
+  getTemperatureOfProduct(product: any) : Observable<any> {
+    return this.httpClient.get(`http://localhost:8081/temperature/${product.id}`)
+                          .pipe(
+                            map(response => {
+                              console.log(product.id);
+                              return  {
+                                ...product,
+                                ...response
+                              };
+                            })
+                          );
   }
 }
