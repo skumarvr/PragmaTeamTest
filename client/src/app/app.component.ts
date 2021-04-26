@@ -59,7 +59,6 @@ export class AppComponent implements OnInit {
     this.loadData(this.products);
 
     setInterval(() => {
-      console.log(this.data);
       this.loadData(this.products);
     }, 5000);
   }
@@ -77,7 +76,6 @@ export class AppComponent implements OnInit {
     return this.httpClient.get(`http://localhost:8081/temperature/${product.id}`)
                           .pipe(
                             map(response => {
-                              console.log(product.id);
                               return  {
                                 ...product,
                                 ...response
