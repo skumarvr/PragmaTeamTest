@@ -24,3 +24,12 @@ Please refer to the provided document for the code challenge requirements.
 ### Code Coverage
 ![image](https://user-images.githubusercontent.com/13828235/116043351-e74e7400-a6b2-11eb-81a1-41420cfa0fb1.png)
 
+## Improvements 
+- Initialise the products using a api call.
+- Use data as an Observable.
+- Make the unit tests more generic.
+- Immprove on the e2e test cases.
+
+## Assumpitons
+- Better unit tests to imporve the code coverage
+- Considering 70% above code coverage( includes Statements, Branches, Functions, Lines) is a good
