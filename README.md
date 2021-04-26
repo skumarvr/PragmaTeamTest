@@ -20,5 +20,7 @@ Please refer to the provided document for the code challenge requirements.
 - code coverage files can be found in .\client\coverage folder
 - open the folder '.\client\coverage\code-challenge'
 - open the 'index.html'
+
+### Code Coverage
 ![image](https://user-images.githubusercontent.com/13828235/116043351-e74e7400-a6b2-11eb-81a1-41420cfa0fb1.png)
 
